@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.Common", "QZ.Common\QZ.Common.csproj", "{72F0C643-166D-4974-AB02-3C8AC224F8E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.Models", "QZ.Models\QZ.Models.csproj", "{7DFB6725-C9E1-4F11-AE26-4D8E2107ED8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.MongoDriver", "QZ.MongoDriver\QZ.MongoDriver.csproj", "{29A9A299-842B-43A5-9193-591C1F55B35C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.WebAPI", "QZ.WebAPI\QZ.WebAPI.csproj", "{9078EA0A-96F3-4DBC-89D9-6B3F0D748B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.IServices", "QZ.IServices\QZ.IServices.csproj", "{F9DDD227-F707-4F9D-83DC-2AF85F1AD54E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZ.Services", "QZ.Services\QZ.Services.csproj", "{18ABC3D6-B23B-441B-844F-EA42BBC7DA64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F0C643-166D-4974-AB02-3C8AC224F8E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F0C643-166D-4974-AB02-3C8AC224F8E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F0C643-166D-4974-AB02-3C8AC224F8E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F0C643-166D-4974-AB02-3C8AC224F8E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFB6725-C9E1-4F11-AE26-4D8E2107ED8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFB6725-C9E1-4F11-AE26-4D8E2107ED8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFB6725-C9E1-4F11-AE26-4D8E2107ED8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFB6725-C9E1-4F11-AE26-4D8E2107ED8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A9A299-842B-43A5-9193-591C1F55B35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A9A299-842B-43A5-9193-591C1F55B35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A9A299-842B-43A5-9193-591C1F55B35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A9A299-842B-43A5-9193-591C1F55B35C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9078EA0A-96F3-4DBC-89D9-6B3F0D748B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9078EA0A-96F3-4DBC-89D9-6B3F0D748B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9078EA0A-96F3-4DBC-89D9-6B3F0D748B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9078EA0A-96F3-4DBC-89D9-6B3F0D748B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DDD227-F707-4F9D-83DC-2AF85F1AD54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DDD227-F707-4F9D-83DC-2AF85F1AD54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DDD227-F707-4F9D-83DC-2AF85F1AD54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DDD227-F707-4F9D-83DC-2AF85F1AD54E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ABC3D6-B23B-441B-844F-EA42BBC7DA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ABC3D6-B23B-441B-844F-EA42BBC7DA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ABC3D6-B23B-441B-844F-EA42BBC7DA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ABC3D6-B23B-441B-844F-EA42BBC7DA64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F56FA956-93C4-4F2E-9537-6C4E6826C614}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,3 @@
+adminroot  root  --  root
+adminruan  net123456  --  dbAdmin
+adminOne  net123456  --  readWriteAnyDatabase
