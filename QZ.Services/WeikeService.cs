@@ -68,7 +68,7 @@ namespace QZ.Services
             }
 
             //标题
-            var data =  base.GetMongoDb<DTO_Serach>().Find(p => p.Title.Contains(context)).ToListAsync();
+            var data = base.GetMongoDb<DTO_Serach>().Find(p => p.Title.Contains(context)).ToListAsync();
             dataList = data.Result;
 
             return dataList;
@@ -84,7 +84,7 @@ namespace QZ.Services
         public List<LecturesDB> SearchChapterInfo(string context)
         {
             List<LecturesDB> dataList = new List<LecturesDB>();
-            
+
             try
             {
                 //可以用的
@@ -106,7 +106,7 @@ namespace QZ.Services
                 dataList = data.Result;
             }
             catch (Exception ex)
-            {   
+            {
             }
 
             return dataList;
