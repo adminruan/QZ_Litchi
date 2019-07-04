@@ -29,6 +29,8 @@ namespace QZ.WebAPI
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //配置跨域请求
+            services.AddCors(option=>option.AddPolicy("cors", policy=>policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().AllowAnyOrigin()));
 
             //集中注册服务
             //string directory = AppContext.BaseDirectory;
@@ -65,6 +67,8 @@ namespace QZ.WebAPI
                 app.UseHsts();
             }
 
+            //将“CORS”（自己在 ConfigureServices 中的命名）中间件添加到Web应用程序管道以允许跨域要求。
+            app.UseCors("cors");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
