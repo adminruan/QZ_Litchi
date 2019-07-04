@@ -28,12 +28,12 @@ namespace QZ.Services
             if (isDesc)
             {
                 //降序分页
-                return base.GetMongoDb<DTO_Course>().Find(x => true).SortByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Limit(pageIndex * pageSize).ToList();
+                return base.GetMongoDb<DTO_Course>().Find(x => x.IsRead == true).SortByDescending(x => x.StatsInfo.Popularity).Skip((pageIndex - 1) * pageSize).Limit(pageIndex * pageSize).ToList();
             }
             else
             {
                 //升序分页
-                return base.GetMongoDb<DTO_Course>().Find(x => true).SortBy(x => x.Id).Skip((pageIndex - 1) * pageSize).Limit(pageIndex * pageSize).ToList();
+                return base.GetMongoDb<DTO_Course>().Find(x => x.IsRead == true).SortBy(x => x.StatsInfo.Popularity).Skip((pageIndex - 1) * pageSize).Limit(pageIndex * pageSize).ToList();
             }
         }
 
@@ -105,7 +105,7 @@ namespace QZ.Services
 
                 dataList = data.Result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

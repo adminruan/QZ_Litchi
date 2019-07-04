@@ -19,6 +19,12 @@ namespace QZ.Models.DTO
         public string Id { get; set; }
 
         /// <summary>
+        /// 是否可以用
+        /// </summary>
+        [BsonElement("can_public_relay")]
+        public bool IsRead { get; set; }
+
+        /// <summary>
         /// 封面图片
         /// </summary>
         [BsonElement("cover_url")]
