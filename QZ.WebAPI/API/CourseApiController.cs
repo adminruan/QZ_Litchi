@@ -41,9 +41,9 @@ namespace QZ.WebAPI.API
             {
                 where = p => p.IsRead == true && p.Title != "无" && p.OriginalPrice < 1000 && p.OriginalPrice >= 500;
             }
-            var data = _iWeikeService.GetData(isDesc.Value).Where(where);
-            SizeCount = data.Count();
-            var dataList = data.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+            var data = _iWeikeService.GetData(where);
+            SizeCount = (int)data.CountDocuments();
+            var dataList = data.Skip((CurrentPage - 1) * PageSize).Limit(PageSize).ToList();
             //List<DTO_Course> dataList = _iWeikeService.GetCourseList(CurrentPage, PageSize);
             if (dataList == null)
             {

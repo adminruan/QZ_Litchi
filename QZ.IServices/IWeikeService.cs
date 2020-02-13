@@ -25,7 +25,8 @@ namespace QZ.IServices
         /// <param name="where"></param>
         /// <param name="isDesc"></param>
         /// <returns></returns>
-        IOrderedMongoQueryable<DTO_Course> GetData(bool isDesc = true);
+        /*IOrderedMongoQueryable<DTO_Course>*/
+        IOrderedFindFluent<DTO_Course, DTO_Course> GetData(Expression<Func<DTO_Course, bool>> where, bool isDesc = true);
 
         /// <summary>
         /// 根据编号获取课程详情

@@ -43,17 +43,19 @@ namespace QZ.Services
         /// <param name="where"></param>
         /// <param name="isDesc"></param>
         /// <returns></returns>
-        public IOrderedMongoQueryable<DTO_Course> GetData(bool isDesc = true)
+        public IOrderedFindFluent<DTO_Course, DTO_Course> GetData(Expression<Func<DTO_Course, bool>> where,bool isDesc = true)
         {
             if (isDesc)
             {
                 //降序分页
-                 return base.GetMongoDb<DTO_Course>().AsQueryable().OrderByDescending(x => x.StatsInfo.Popularity);
+                //return base.GetMongoDb<DTO_Course>().AsQueryable().OrderByDescending(x => x.StatsInfo.Popularity);
+                return base.GetMongoDb<DTO_Course>().Find(where).SortByDescending(x => x.StatsInfo.Popularity);
             }
             else
             {
                 //升序分页
-                return base.GetMongoDb<DTO_Course>().AsQueryable().OrderBy(x => x.StatsInfo.Popularity);
+                //return base.GetMongoDb<DTO_Course>().AsQueryable().OrderBy(x => x.StatsInfo.Popularity);
+                return base.GetMongoDb<DTO_Course>().Find(where).SortBy(x => x.StatsInfo.Popularity);
             }
         }
 
