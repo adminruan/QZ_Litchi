@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using QZ.Common.Helper;
 using QZ.IServices;
 using QZ.Models.DB;
@@ -26,18 +28,30 @@ namespace QZ.WebAPI.API
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         [HttpGet]
-        public void CourseList(int pageIndex, int pageSize)
+        public void CourseList(int pageIndex, int pageSize, bool? lowPrice, bool? isDesc)
         {
-            CurrentPage = pageIndex <= 0 ? 1 : pageIndex;
-            PageSize = pageSize <= 0 ? 15 : pageSize;
-            List<DTO_Course> dataList = _iWeikeService.GetCourseList(CurrentPage, PageSize);
+            if (lowPrice == null)
+                lowPrice = false;
+            if (isDesc == null)
+                isDesc = false;
+            CurrentPage = pageIndex < 1 ? 1 : pageIndex;
+            PageSize = pageSize < 1 ? 20 : pageSize;
+            Expression<Func<DTO_Course, bool>> where = p => p.IsRead == true && p.Title != "无";
+            if (lowPrice.Value)
+            {
+                where = p => p.IsRead == true && p.Title != "无" && p.OriginalPrice < 1000 && p.OriginalPrice >= 500;
+            }
+            var data = _iWeikeService.GetData(isDesc.Value).Where(where);
+            SizeCount = data.Count();
+            var dataList = data.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+            //List<DTO_Course> dataList = _iWeikeService.GetCourseList(CurrentPage, PageSize);
             if (dataList == null)
             {
                 Write("{\"SIP\":\"" + Base64Encode(Helper_IP.GetServiceIP()) + "\",\"Date\":\"" + Base64Encode(DateTime.Now.ToString()) + "\",\"S\":\"" + Base64Encode("0") + "\",\"msg\":\"" + Base64Encode("暂无数据") + "\"}");
                 return;
             }
             string jsonStr = "{\"msg\":\"\",\"SIP\":\"" + Base64Encode(Helper_IP.GetServiceIP()) + "\",\"Date\":\"" + Base64Encode(DateTime.Now.ToString()) + "\",\"S\":\"" + Base64Encode("1") + "\",";
-            jsonStr += "\"dataList\":[";
+            jsonStr += "\"currentPage\":\"" + Base64Encode(CurrentPage.ToString()) + "\",\"totalPage\":\"" + Base64Encode(SizeCount.GetPageCount(PageSize).ToString()) + "\",\"dataList\":[";
             foreach (DTO_Course item in dataList)
             {
                 jsonStr += "{\"ID\":\"" + Base64Encode(item.Id) + "\",";
@@ -118,11 +132,11 @@ namespace QZ.WebAPI.API
             CurrentPage = pageIndex <= 0 ? 1 : pageIndex;
             PageSize = pageSize <= 0 ? 15 : pageSize;
 
-            List<DTO_Serach> courseList =  _iWeikeService.SerachCourseInfo(context/*, CurrentPage, PageSize, ref PageCount, ref SizeCount*/);//搜索课程
-            
+            List<DTO_Serach> courseList = _iWeikeService.SerachCourseInfo(context/*, CurrentPage, PageSize, ref PageCount, ref SizeCount*/);//搜索课程
+
 
             string jsonStr = "{\"msg\":\"\",\"SIP\":\"" + Base64Encode(Helper_IP.GetServiceIP()) + "\",\"Date\":\"" + Base64Encode(DateTime.Now.ToString()) + "\",";
-            jsonStr+=  "\"S\":\"" + Base64Encode("1") + "\",";
+            jsonStr += "\"S\":\"" + Base64Encode("1") + "\",";
             if (courseList != null && courseList.Count > 0)//课程
             {
                 foreach (var item in courseList)
@@ -173,7 +187,7 @@ namespace QZ.WebAPI.API
             {
                 jsonStr += "\"ChapterList\":[]";
             }
-            Write(jsonStr+"}");
+            Write(jsonStr + "}");
             return;
         }
 

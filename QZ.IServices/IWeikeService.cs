@@ -3,6 +3,9 @@ using QZ.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MongoDB.Driver;
+using System.Linq.Expressions;
+using MongoDB.Driver.Linq;
 
 namespace QZ.IServices
 {
@@ -15,6 +18,14 @@ namespace QZ.IServices
         /// <param name="pageSize">每页行数</param>
         /// /// <param name="isDesc">是否降序</param>
         List<DTO_Course> GetCourseList(int pageIndex, int pageSize, bool isDesc = true);
+
+        /// <summary>
+        /// 获取课程列表-使用时查询
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="isDesc"></param>
+        /// <returns></returns>
+        IOrderedMongoQueryable<DTO_Course> GetData(bool isDesc = true);
 
         /// <summary>
         /// 根据编号获取课程详情

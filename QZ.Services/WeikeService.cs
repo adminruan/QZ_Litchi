@@ -13,7 +13,7 @@ namespace QZ.Services
     public class WeikeService : BaseService, IWeikeService
     {
         /// <summary>
-        /// 获取课程列表
+        /// 获取课程列表-立即查询
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -34,6 +34,26 @@ namespace QZ.Services
             {
                 //升序分页
                 return base.GetMongoDb<DTO_Course>().Find(x => x.IsRead == true).SortBy(x => x.StatsInfo.Popularity).Skip((pageIndex - 1) * pageSize).Limit(pageIndex * pageSize).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 获取课程列表-使用时查询
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="isDesc"></param>
+        /// <returns></returns>
+        public IOrderedMongoQueryable<DTO_Course> GetData(bool isDesc = true)
+        {
+            if (isDesc)
+            {
+                //降序分页
+                 return base.GetMongoDb<DTO_Course>().AsQueryable().OrderByDescending(x => x.StatsInfo.Popularity);
+            }
+            else
+            {
+                //升序分页
+                return base.GetMongoDb<DTO_Course>().AsQueryable().OrderBy(x => x.StatsInfo.Popularity);
             }
         }
 
