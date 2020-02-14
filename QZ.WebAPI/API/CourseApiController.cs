@@ -90,6 +90,7 @@ namespace QZ.WebAPI.API
             string jsonStr = "{\"msg\":\"\",\"SIP\":\"" + Base64Encode(Helper_IP.GetServiceIP()) + "\",\"Date\":\"" + Base64Encode(DateTime.Now.ToString()) + "\",\"S\":\"" + Base64Encode("1") + "\",";
             jsonStr += "\"ID\":\"" + Base64Encode(data.ID) + "\",";
             jsonStr += "\"Title\":\"" + Base64Encode(data.Title) + "\",";
+            jsonStr += "\"ChannelId\":\"" + Base64Encode(data.ChannelId.ToString()) + "\",";
             jsonStr += "\"NeedMoney\":\"" + Base64Encode(data.NeedMoney.ToString()) + "\",";
             jsonStr += "\"CoverUrl\":\"" + Base64Encode(data.CoverUrl) + "\",";
             jsonStr += "\"Description\":\"" + Base64Encode(data.Description) + "\",";

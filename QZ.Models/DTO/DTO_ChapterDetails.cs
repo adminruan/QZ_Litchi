@@ -16,6 +16,9 @@ namespace QZ.Models.DTO
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string ID { get; set; }
 
+        [BsonElement("channel_id")]
+        public int ChannelId { get; set; }
+
         /// <summary>
         /// 封面图片
         /// </summary>
